@@ -43,6 +43,8 @@ $.fn.extend {}=
       postStepCallback: $.noop             # A method to call after each step
       nextOnClose: false                   # If cookies are enabled, increment the current step on close
       debug: false
+			template: '<div class="popover tour"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+
       
     # Merge default settings with options.
     settings = $.extend settings, options
@@ -98,6 +100,8 @@ $.fn.extend {}=
           title: if tip_data['title']? then "#{tip_data['title']} <a class=\"tour-tip-close close\" data-touridx=\"#{idx + 1}\">&times;</a>" else null
           content: "<p>#{$li.html()}</p><p style=\"text-align: right\"><a href=\"#\" class=\"tour-tip-next btn btn-success\" data-touridx=\"#{idx + 1}\">#{if (idx + 1) < $tips.length then 'Next <i class="icon-chevron-right icon-white"></i>' else '<i class="icon-ok icon-white"></i> Done'}</a></p>"
           placement: tip_data['placement'] || 'right'
+					template: settings.template
+
         
         # save the target element in the tip node
         $li.data('target', $target)
